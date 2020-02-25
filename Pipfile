@@ -1,0 +1,15 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+lambda-uploader = "*"
+python-lambda-local = "*"
+
+[packages]
+pyephem = "*"
+python-twitter = "*"
+
+[requires]
+python_version = "3.7"
