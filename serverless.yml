@@ -1,0 +1,38 @@
+service: twitter-moon
+
+frameworkVersion: '2'
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: python3.7
+  lambdaHashingVersion: 20201221
+  stage: dev
+  region: ap-northeast-1
+  versionFunctions: false
+  logRetentionInDays: 14
+  deploymentBucket:
+    name: ${env:DEPLOYMENT_BUCKET}
+    maxPreviousDeploymentArtifacts: 1
+  environment:
+    CONSUMER_KEY: ${env:CONSUMER_KEY}
+    CONSUMER_SECRET_KEY: ${env:CONSUMER_SECRET_KEY}
+    ACCESS_TOKEN: ${env:ACCESS_TOKEN}
+    ACCESS_TOKEN_SECRET: ${env:ACCESS_TOKEN_SECRET}
+    SCREEN_NAME: ${env:SCREEN_NAME}
+
+functions:
+  function:
+    handler: handler.main
+    events:
+      - schedule: cron(5 15 * * ? *)
+    layers:
+      - { Ref: PythonRequirementsLambdaLayer }
+
+custom:
+  pythonRequirements:
+    layer: true
+
+plugins:
+  - serverless-python-requirements

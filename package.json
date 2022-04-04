@@ -1,0 +1,8 @@
+{
+  "name": "twitter-moon-by-lambda",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless-python-requirements": "5.1.1"
+  }
+}
